@@ -1,46 +1,44 @@
-class Stack implements MethodsCollection{
-    private class Node{
-        int data;
-        Node next;
-        Node(int data){
-            this.data = data;
-            next = null;
-        }
-    }
-    Node top;
-    int size;
-    Stack() {
+public class Stack<T> implements MethodsCollection {
+    private Node<T> top; // referência para o topo da pilha
+    private int size;
+
+    public Stack() {
         this.top = null;
-        this.size = 0; //define o valor inicial da stack
+        this.size = 0; // valor inicial da stack
     }
 
-    public void stackPush(int x){ //método para adicionar um elemento
-        Node element = new Node(x);
+    public void stackPush(T x) { // adiciona um elemento
+        Node<T> element = new Node<>(x);
         element.next = top;
         top = element;
-        System.out.printf("Element %d pushed\n", top.data);
+        System.out.printf("Elemento: %s adicionado\n", top.data);
         size++;
     }
 
-    public int stackPop(){
-        if (top == null){ // verifica se a pilha está vazia
-            return -1; // pode retornar um valor negativo ou lançar uma exceção
+    public T stackPop() {
+        if (top == null) { // caso a pilha esteja vazia, lança uma exceção 
+            throw new IllegalStateException("Stack vazia");
         }
-        int topData = top.data; // dado a ser retornado, uma vez que está no topo da pilha
-        Node temp = top;
-        top = top.next; // aponta para o próximo nó da pilha
+        T topData = top.data; // Dado a ser retornado
+        top = top.next; 
         size--;
         return topData;
     }
-    
+
+    public T peek() { // apenas visualiza o topo da pihaa
+        if (top == null) {
+            throw new IllegalStateException("Stack vazia");
+        }
+        return top.data;
+    }
 
     @Override
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return top == null;
     }
+
     @Override
-    public int getSize(){
+    public int getSize() {
         return size;
     }
-
 }
