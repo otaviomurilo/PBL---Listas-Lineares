@@ -7,8 +7,8 @@ public class Stack<T> implements MethodsCollection {
         this.size = 0; // valor inicial da stack
     }
 
-    public void stackPush(T x) { // adiciona um elemento
-        Node<T> element = new Node<>(x);
+    public void stackPush(T data) { // adiciona um elemento
+        Node<T> element = new Node<>(data);
         element.next = top;
         top = element;
         System.out.printf("Elemento: %s adicionado\n", top.data);

@@ -9,7 +9,7 @@ public class Queue<T> implements MethodsCollection {
         size = 0;
     }
 
-    public void enqueue(T data) { //adiciona um elemento
+    public void queuePush(T data) {
         Node<T> newNode = new Node<>(data);
         if (rear == null) {
             front = newNode;
@@ -21,7 +21,7 @@ public class Queue<T> implements MethodsCollection {
         size++;
     }
 
-    public T dequeue() {
+    public T queuePop() {
         if (isEmpty()) {
             throw new IllegalStateException("Fila vazia");
         }
