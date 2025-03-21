@@ -20,11 +20,13 @@ public class FloodFill {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             return false; 
         }
+
+
         return image.getRGB(x, y) == initColour;
     }
 
 
-    public void fillWithStack(int initX, int initY, int newColour, int transitionImg) throws IOException{
+    public void fillWithStack(int initX, int initY, int newColour, int transitionImg, int transitionInterval) throws IOException{
         int initColour = image.getRGB(initX, initY);
 
         Stack<int[]> stack = new Stack<>();
@@ -48,8 +50,8 @@ public class FloodFill {
                 stack.push(new int[] { x, y + 1 });
                 stack.push(new int[] { x, y - 1 });
 
-                if (pixelsModified % transitionImg == 0) {
-                    ImageManager.saveIntermediateImage(image, "output_transition" + pixelsModified + ".png");
+                if (pixelsModified % transitionInterval == 0) {
+                    ImageManager.saveTransitionImage(image, "output_transition_" + pixelsModified + ".png");
                 }
     
             }
