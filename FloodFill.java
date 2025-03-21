@@ -49,16 +49,13 @@ public class FloodFill {
                 stack.push(new int[] { x, y - 1 });
 
                 if (pixelsModified % transitionImg == 0) {
-                    saveIntermediateImage("output_transition" + pixelsModified + ".png");
+                    ImageManager.saveIntermediateImage(image, "output_transition" + pixelsModified + ".png");
                 }
     
             }
         }
+        ImageManager.saveFinalImage(image, "output.png");
     }
 
-    private void saveIntermediateImage(String fileName) throws IOException {
-        File output = new File(fileName);
-        ImageIO.write(image, "png", output);
-    }
 }
 
