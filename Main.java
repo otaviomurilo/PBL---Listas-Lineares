@@ -6,7 +6,7 @@ public class Main {
         ImageManager.clearFolder();
         try {
             FloodFill floodFill = new FloodFill("assets/input.png");
-            floodFill.fillWithStack(500, 650, 0xFF00FF00, 500, 700); 
+            floodFill.fillWithStack(200, 150, 0xFF00FFF0, 500, 700); 
         } catch (IOException e) {
             e.printStackTrace();
         }
