@@ -14,33 +14,30 @@ public class FloodFill {
         height = image.getHeight();
     }
 
-    // ========== IMPLEMENTAÇÃO COM PILHA (DFS) ========== //
-    public void fillWithStack(int initX, int initY, int newColour, int transitionInterval) throws IOException {
+    public void fillWithStack(int initX, int initY, int newColour, int transitionImg, int transitionInterval) throws IOException {
         try {
             int initColour = image.getRGB(initX, initY);
-
+            
             Stack<int[]> stack = new Stack<>();
-            stack.stackPush(new int[]{ initX, initY });
+            stack.push(new int[]{ initX, initY });
             int pixelsModified = 0;
-
+        
             while (!stack.isEmpty()) {
-                int[] pixel = stack.stackPop();
+                int[] pixel = stack.pop();
                 int x = pixel[0];
                 int y = pixel[1];
-
+    
                 if (isValidPixel(x, y, initColour)) {
                     image.setRGB(x, y, newColour);
                     pixelsModified++;
-
-                    // Adiciona vizinhos (ordem inversa para garantir DFS)
-                    stack.stackPush(new int[]{ x + 1, y });
-                    stack.stackPush(new int[]{ x - 1, y });
-                    stack.stackPush(new int[]{ x, y + 1 });
-                    stack.stackPush(new int[]{ x, y - 1 });
-
-                    // Salva transição
+                    
+                    stack.push(new int[]{ x + 1, y });
+                    stack.push(new int[]{ x - 1, y });
+                    stack.push(new int[]{ x, y + 1 });
+                    stack.push(new int[]{ x, y - 1 });
+        
                     if (pixelsModified % transitionInterval == 0) {
-                        ImageManager.saveTransitionImage(image, "stack_transition_" + pixelsModified + ".png");
+                        ImageManager.saveTransitionImage(image, "output_transition_" + pixelsModified + ".png");
                     }
                 }
             }
@@ -50,17 +47,16 @@ public class FloodFill {
         }
     }
 
-    // ========== IMPLEMENTAÇÃO COM FILA (BFS) ========== //
     public void fillWithQueue(int initX, int initY, int newColour, int transitionInterval) throws IOException {
         try {
             int initColour = image.getRGB(initX, initY);
 
             Queue<int[]> queue = new Queue<>();
-            queue.queuePush(new int[]{ initX, initY });
+            queue.push(new int[]{ initX, initY });
             int pixelsModified = 0;
 
             while (!queue.isEmpty()) {
-                int[] pixel = queue.queuePop();
+                int[] pixel = queue.pop();
                 int x = pixel[0];
                 int y = pixel[1];
 
@@ -68,13 +64,11 @@ public class FloodFill {
                     image.setRGB(x, y, newColour);
                     pixelsModified++;
 
-                    // Adiciona vizinhos (ordem normal para garantir BFS)
-                    queue.queuePush(new int[]{ x + 1, y });
-                    queue.queuePush(new int[]{ x - 1, y });
-                    queue.queuePush(new int[]{ x, y + 1 });
-                    queue.queuePush(new int[]{ x, y - 1 });
+                    queue.push(new int[]{ x + 1, y });
+                    queue.push(new int[]{ x - 1, y });
+                    queue.push(new int[]{ x, y + 1 });
+                    queue.push(new int[]{ x, y - 1 });
 
-                    // Salva transição
                     if (pixelsModified % transitionInterval == 0) {
                         ImageManager.saveTransitionImage(image, "queue_transition_" + pixelsModified + ".png");
                     }
@@ -86,7 +80,6 @@ public class FloodFill {
         }
     }
 
-    // ========== MÉTODOS AUXILIARES ========== //
     private boolean isValidPixel(int x, int y, int initColour) {
         return x >= 0 && x < width &&
                 y >= 0 && y < height &&

@@ -1,4 +1,4 @@
-public class Stack<T> implements MethodsCollection {
+public class Stack<T> implements MethodsCollection<T> {
     private Node<T> top; // referência para o topo da pilha
     private int size;
 
@@ -6,16 +6,16 @@ public class Stack<T> implements MethodsCollection {
         this.top = null;
         this.size = 0; // valor inicial da stack
     }
-
-    public void stackPush(T data) { // adiciona um elemento
+    
+    @Override
+    public void push(T data) {
         Node<T> element = new Node<>(data);
         element.next = top;
         top = element;
-        System.out.printf("Elemento: %s adicionado\n", top.data);
         size++;
     }
-
-    public T stackPop() {
+    @Override
+    public T pop() {
         if (top == null) { // caso a pilha esteja vazia, lança uma exceção 
             throw new IllegalStateException("Stack vazia");
         }

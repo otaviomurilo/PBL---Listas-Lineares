@@ -1,4 +1,4 @@
-public class Queue<T> implements MethodsCollection {
+public class Queue<T> implements MethodsCollection<T> {
     private Node<T> front;  // início da fila
     private Node<T> rear;   // final da fila
     private int size;
@@ -8,8 +8,8 @@ public class Queue<T> implements MethodsCollection {
         rear = null;
         size = 0;
     }
-
-    public void queuePush(T data) {
+    @Override
+    public void push(T data) {
         Node<T> newNode = new Node<>(data);
         if (rear == null) {
             front = newNode;
@@ -20,8 +20,8 @@ public class Queue<T> implements MethodsCollection {
         }
         size++;
     }
-
-    public T queuePop() {
+    @Override
+    public T pop() {
         if (isEmpty()) {
             throw new IllegalStateException("Fila vazia");
         }
