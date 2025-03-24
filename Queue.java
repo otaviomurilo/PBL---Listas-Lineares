@@ -43,4 +43,21 @@ public class Queue<T> implements MethodsCollection<T> {
     public int getSize() {
         return size;
     }
+
+    @Override
+    public String toString(){
+        if (isEmpty()){
+            return "Fila vazia!";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        Node<T> current = front; //começa pelo início da fila = primeiro elemento inserido
+
+        while (current != null) {
+            sb.append(current.data);
+            if(current.next != null){
+                sb.append(", ");
+            } current = current.next;
+        } return sb.toString();
+    }
 }

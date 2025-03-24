@@ -3,4 +3,6 @@ public interface MethodsCollection<T> {
     int getSize();
     void push(T data);
     T pop();
+    @Override
+    String toString();
 }
