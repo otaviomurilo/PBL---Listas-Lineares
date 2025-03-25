@@ -14,7 +14,7 @@ public class FloodFill {
         height = image.getHeight();
     }
 
-    public void fillWithStack(int initX, int initY, int newColour, int transitionImg, int transitionInterval) throws IOException {
+    public void fillWithStack(int initX, int initY, int newColour, int transitionInterval) throws IOException {
         try {
             int initColour = image.getRGB(initX, initY);
             

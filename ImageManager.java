@@ -38,14 +38,6 @@ public class ImageManager {
         }
     }
 
-    public static void saveImage(BufferedImage image, String filePath) {
-        try {
-            ImageIO.write(image, "png", new File(filePath));
-            System.out.println("Imagem salva em: " + filePath);
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
-    }
 
     public static void saveTransitionImage(BufferedImage image, String fileName) throws IOException {
         try {
