@@ -10,8 +10,6 @@ public class Main {
             FloodFill floodFillQueue = new FloodFill("assets/input.png", false);
             floodFillQueue.fillWithQueue(200, 150, 0xFF00FF00, 1000); 
             
-            
-
         } catch (IOException e) {
             e.printStackTrace();
         }

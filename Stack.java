@@ -1,4 +1,4 @@
-    public class Stack<T> implements MethodsCollection<T> {
+    public class Stack<T> implements DataStructure<T> {
         private Node<T> top; // referência para o topo da pilha
         private int size;
 
@@ -44,19 +44,26 @@
 
         @Override
         public String toString() {
-            if (isEmpty()) {
-                return "Pilha vazia";
-            }
-        
+            if (isEmpty()) return "Pilha vazia";
+            
             StringBuilder sb = new StringBuilder();
-            Node<T> current = top; //começa pelo topo = último elemento inserido
-
+            Node<T> current = top;
+            
             while (current != null) {
-                sb.append(current.data);
-                if (current.next != null) {
-                    sb.append(", ");
-                }
-                current = current.next; //move para o próximo nó
-            } return sb.toString();
+                sb.append(current.data).append(current.next != null ? ", " : "");
+                current = current.next;
+            }
+            return sb.toString();
         }
+
+        @Override
+        public void enqueue(T data) {
+            throw new UnsupportedOperationException("método não suportado em Stack");
+        }
+    
+        @Override
+        public T dequeue() {
+            throw new UnsupportedOperationException("método não suportado em Stack");
+        }
+        
     }

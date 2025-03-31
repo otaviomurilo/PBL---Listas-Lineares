@@ -1,4 +1,4 @@
-public class Queue<T> implements MethodsCollection<T> {
+public class Queue<T> implements DataStructure<T> {
     private Node<T> front;  // início da fila
     private Node<T> rear;   // final da fila
     private int size;
@@ -9,7 +9,7 @@ public class Queue<T> implements MethodsCollection<T> {
         size = 0;
     }
     @Override
-    public void push(T data) {
+    public void enqueue(T data) {
         Node<T> newNode = new Node<>(data);
         if (rear == null) {
             front = newNode;
@@ -21,7 +21,7 @@ public class Queue<T> implements MethodsCollection<T> {
         size++;
     }
     @Override
-    public T pop() {
+    public T dequeue() {
         if (isEmpty()) {
             throw new IllegalStateException("Fila vazia");
         }
@@ -45,19 +45,27 @@ public class Queue<T> implements MethodsCollection<T> {
     }
 
     @Override
-    public String toString(){
-        if (isEmpty()){
-            return "Fila vazia!";
-        }
-
+    public String toString() {
+        if (isEmpty()) return "Fila vazia";
+        
         StringBuilder sb = new StringBuilder();
-        Node<T> current = front; //começa pelo início da fila = primeiro elemento inserido
-
+        Node<T> current = front;
+        
         while (current != null) {
-            sb.append(current.data);
-            if(current.next != null){
-                sb.append(", ");
-            } current = current.next;
-        } return sb.toString();
+            sb.append(current.data).append(current.next != null ? ", " : "");
+            current = current.next;
+        }
+        return sb.toString();
     }
+
+    @Override
+    public void push(T data) {
+        throw new UnsupportedOperationException("método não suportado em Queue");
+    }
+
+    @Override
+    public T pop() {
+        throw new UnsupportedOperationException("método não suportado em Queue");
+    }
+    
 }

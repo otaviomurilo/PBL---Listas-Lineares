@@ -63,11 +63,11 @@
                 int initColour = image.getRGB(initX, initY);
 
                 Queue<int[]> queue = new Queue<>();
-                queue.push(new int[]{ initX, initY });
+                queue.enqueue(new int[]{ initX, initY });
                 int pixelsModified = 0;
 
                 while (!queue.isEmpty()) {
-                    int[] pixel = queue.pop();
+                    int[] pixel = queue.dequeue();
                     int x = pixel[0];
                     int y = pixel[1];
 
@@ -75,10 +75,10 @@
                         image.setRGB(x, y, newColour);
                         pixelsModified++;
 
-                        queue.push(new int[]{ x + 1, y });
-                        queue.push(new int[]{ x - 1, y });
-                        queue.push(new int[]{ x, y + 1 });
-                        queue.push(new int[]{ x, y - 1 });
+                        queue.enqueue(new int[]{ x + 1, y });
+                        queue.enqueue(new int[]{ x - 1, y });
+                        queue.enqueue(new int[]{ x, y + 1 });
+                        queue.enqueue(new int[]{ x, y - 1 });
 
                         if (pixelsModified % transitionInterval == 0) {
                             ImageManager.saveTransitionImage(image, "queue_transition_" + pixelsModified + ".png");
