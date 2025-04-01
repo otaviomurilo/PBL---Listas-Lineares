@@ -39,23 +39,23 @@ public class ImageManager {
     }
 
 
-        public static void saveTransitionImage(BufferedImage image, String fileName) throws IOException {
+    public static void saveTransitionImage(BufferedImage image, String fileName) throws IOException {
+        try {
+            File output = new File("transitions", fileName);  
+            output.getParentFile().mkdirs(); 
+            ImageIO.write(image, "png", output);
+            
             try {
-                File output = new File("transitions", fileName);  
-                output.getParentFile().mkdirs(); 
-                ImageIO.write(image, "png", output);
-                
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    System.out.println("Thread interrompida: " + e.getMessage());
-                }
-                
-                displayImage(image); 
-            } catch (IOException e) {
-                System.out.println("Erro ao salvar imagem intermediária: " + e.getMessage());
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrompida: " + e.getMessage());
             }
+            
+            displayImage(image); 
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar imagem intermediária: " + e.getMessage());
         }
+    }
         
     
 

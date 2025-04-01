@@ -81,7 +81,7 @@
                         queue.enqueue(new int[]{ x, y - 1 });
 
                         if (pixelsModified % transitionInterval == 0) {
-                            ImageManager.saveTransitionImage(image, "queue_transition_" + pixelsModified + ".png");
+                            ImageManager.saveTransitionImage(image, "output_transition_" + pixelsModified + ".png");
                         }
                     }
                 }
